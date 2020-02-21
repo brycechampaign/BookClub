@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { addUser } = require('./controllers');
 
 router.post('/users', (req, res) => {
-  const { username, password } = req.query;
+  const { username, password } = req.body;
 
   // If a username or password is not supplied, respond with an error status
   if (!username || !password) {
