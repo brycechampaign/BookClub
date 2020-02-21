@@ -1,0 +1,21 @@
+version: '3.2'
+
+services:
+  server:
+    image: brycechampaign/bookclub
+    restart: always
+    environment:
+      PORT: 3000
+    ports:
+      - 3000:3000
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: your-username-here
+    ports:
+      - 5432:5432
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
