@@ -1,11 +1,12 @@
 /* Remove tables if they already exist so the schema can be re-written */
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS books CASCADE;
+DROP TABLE IF EXISTS notes CASCADE;
 
 /* Create a user table, schema subject to change as genuine authentication is implemented */
 CREATE TABLE users(
   id serial PRIMARY KEY,
-  name VARCHAR(255),
+  username VARCHAR(255),
   password VARCHAR(255)
 );
 
