@@ -6,9 +6,11 @@ services:
     restart: always
     environment:
       PORT: 3000
-      DB_PASSWORD: example
-      DB_USER: example-user
-      DB_HOST: localhost
+      PGUSER: example
+      PGHOST: db
+      PGPASSWORD: example
+      PGDATABASE: example
+      PGPORT: 5432
     ports:
       - 3000:3000
   db:
