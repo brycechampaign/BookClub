@@ -6,6 +6,9 @@ services:
     restart: always
     environment:
       PORT: 3000
+      DB_PASSWORD: example
+      DB_USER: example-user
+      DB_HOST: localhost
     ports:
       - 3000:3000
   db:
