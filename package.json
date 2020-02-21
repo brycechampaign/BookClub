@@ -1,0 +1,36 @@
+{
+  "name": "bookclub",
+  "version": "1.0.0",
+  "description": "A bookclub CRUD app created as part of a coding challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon server/index.js",
+    "build:dev": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycechampaign/BookClub.git"
+  },
+  "author": "Bryce Champaign",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brycechampaign/BookClub/issues"
+  },
+  "homepage": "https://github.com/brycechampaign/BookClub#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
