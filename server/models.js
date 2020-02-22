@@ -93,3 +93,24 @@ module.exports.setTitle = async (id, title) => {
       throw new Error(err);
     });
 };
+
+module.exports.setAuthor = async (id, author) => {
+  const client = await db.connect();
+  const query = 'UPDATE books SET author = $1 WHERE id = $2 RETURNING id';
+
+  return client
+    .query(query, [author, id])
+    .then(updatedIds => {
+      // Throw an error if no book entry associated
+      // with the id argument is found
+      if (updatedIds.rows.length === 0) {
+        throw new Error('Invalid book id');
+      }
+
+      client.release();
+    })
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};

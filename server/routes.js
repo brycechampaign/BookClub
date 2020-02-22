@@ -5,7 +5,8 @@ const {
   addBook,
   getBooksByUsername,
   deleteBookById,
-  updateTitle
+  updateTitle,
+  updateAuthor
 } = require('./controllers');
 
 router.post('/users', (req, res) => {
@@ -63,6 +64,15 @@ router.put('/books/:id/title', (req, res) => {
   const newTitle = req.body.title;
 
   updateTitle(id, newTitle)
+    .then(() => res.sendStatus(200))
+    .catch(() => res.sendStatus(404));
+});
+
+router.put('/books/:id/author', (req, res) => {
+  const { id } = req.params;
+  const newAuthor = req.body.author;
+
+  updateAuthor(id, newAuthor)
     .then(() => res.sendStatus(200))
     .catch(() => res.sendStatus(404));
 });
