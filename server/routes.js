@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { addUser } = require('./controllers');
+const { addUser, authenticateUser } = require('./controllers');
 
 router.post('/users', (req, res) => {
   const { username, password } = req.body;
@@ -11,6 +11,20 @@ router.post('/users', (req, res) => {
     addUser(username, password)
       .then(() => res.sendStatus(201))
       .catch(() => res.sendStatus(500));
+  }
+});
+
+// Endpoint for psuedo-authentication
+// This is subject to change when genuine authentication is implemented
+router.get('/authenticate', (req, res) => {
+  const { username, password } = req.query;
+
+  if (!username || !password) {
+    res.sendStatus(400);
+  } else {
+    authenticateUser(username, password)
+      .then(() => res.sendStatus(200))
+      .catch(() => res.sendStatus(404));
   }
 });
 
