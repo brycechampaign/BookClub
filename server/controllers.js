@@ -2,7 +2,8 @@ const {
   createUser,
   getUserByUsername,
   createBook,
-  getBooksByUserId
+  getBooksByUserId,
+  removeBookById
 } = require('./models');
 
 module.exports.addUser = async (username, password) => {
@@ -40,4 +41,8 @@ module.exports.addBook = async ({
 module.exports.getBooksByUsername = async username => {
   const userId = await getUserByUsername(username).then(user => user.id);
   return await getBooksByUserId(userId);
+};
+
+module.exports.deleteBookById = async id => {
+  return await removeBookById(id);
 };

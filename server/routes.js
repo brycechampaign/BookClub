@@ -3,7 +3,8 @@ const {
   addUser,
   authenticateUser,
   addBook,
-  getBooksByUsername
+  getBooksByUsername,
+  deleteBookById
 } = require('./controllers');
 
 router.post('/users', (req, res) => {
@@ -47,6 +48,13 @@ router.get('/:username/books', (req, res) => {
   getBooksByUsername(username)
     .then(books => res.send(books))
     .catch(() => res.sendStatus(500));
+});
+
+router.delete('/books', (req, res) => {
+  const { bookId } = req.query;
+  deleteBookById(bookId)
+    .then(() => res.sendStatus(200))
+    .catch(err => console.error(err));
 });
 
 module.exports = router;

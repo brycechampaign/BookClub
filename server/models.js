@@ -65,3 +65,18 @@ module.exports.getBooksByUserId = async userId => {
       throw new Error(err);
     });
 };
+
+module.exports.removeBookById = async id => {
+  const client = await db.connect();
+  const notesQuery = client.query('DELETE FROM notes WHERE book_id = $1', [id]);
+  const booksQuery = client.query('DELETE FROM books WHERE id = $1', [id]);
+
+  return Promise.all([notesQuery, booksQuery])
+    .then(() => {
+      client.release();
+    })
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};
