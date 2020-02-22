@@ -29,3 +29,23 @@ module.exports.getUserByUsername = async username => {
       throw new Error(err);
     });
 };
+
+module.exports.createBook = async (
+  userId,
+  title,
+  author,
+  genre,
+  description
+) => {
+  const client = await db.connect();
+  const query =
+    'INSERT INTO books (user_id, title, author, genre, description) VALUES ($1, $2, $3, $4, $5)';
+
+  return client
+    .query(query, [userId, title, author, genre, description])
+    .then(() => client.release())
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};

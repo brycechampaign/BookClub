@@ -1,4 +1,4 @@
-const { createUser, getUserByUsername } = require('./models');
+const { createUser, getUserByUsername, createBook } = require('./models');
 
 module.exports.addUser = async (username, password) => {
   return await createUser(username, password);
@@ -14,4 +14,20 @@ module.exports.authenticateUser = async (username, password) => {
   } else {
     throw new Error('Invalid username or password');
   }
+};
+
+module.exports.addBook = async ({
+  username,
+  title,
+  author,
+  genre,
+  description
+}) => {
+  const userId = await getUserByUsername(username)
+    .then(user => user.id)
+    .catch(err => {
+      throw new Error(err);
+    });
+
+  return await createBook(userId, title, author, genre, description);
 };
