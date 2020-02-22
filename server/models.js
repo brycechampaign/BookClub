@@ -80,3 +80,16 @@ module.exports.removeBookById = async id => {
       throw new Error(err);
     });
 };
+
+module.exports.setTitle = async (id, title) => {
+  const client = await db.connect();
+  const query = 'UPDATE books SET title = $1 WHERE id = $2';
+
+  return client
+    .query(query, [title, id])
+    .then(() => client.release())
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};

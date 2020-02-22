@@ -3,7 +3,8 @@ const {
   getUserByUsername,
   createBook,
   getBooksByUserId,
-  removeBookById
+  removeBookById,
+  setTitle
 } = require('./models');
 
 module.exports.addUser = async (username, password) => {
@@ -45,4 +46,8 @@ module.exports.getBooksByUsername = async username => {
 
 module.exports.deleteBookById = async id => {
   return await removeBookById(id);
+};
+
+module.exports.updateTitle = async (id, newTitle) => {
+  return await setTitle(id, newTitle);
 };
