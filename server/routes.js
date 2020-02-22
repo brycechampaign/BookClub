@@ -1,5 +1,10 @@
 const router = require('express').Router();
-const { addUser, authenticateUser, addBook } = require('./controllers');
+const {
+  addUser,
+  authenticateUser,
+  addBook,
+  getBooksByUsername
+} = require('./controllers');
 
 router.post('/users', (req, res) => {
   const { username, password } = req.body;
@@ -34,6 +39,13 @@ router.post('/:username/books', (req, res) => {
 
   addBook(req.body)
     .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500));
+});
+
+router.get('/:username/books', (req, res) => {
+  const { username } = req.params;
+  getBooksByUsername(username)
+    .then(books => res.send(books))
     .catch(() => res.sendStatus(500));
 });
 

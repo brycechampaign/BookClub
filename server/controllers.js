@@ -1,4 +1,9 @@
-const { createUser, getUserByUsername, createBook } = require('./models');
+const {
+  createUser,
+  getUserByUsername,
+  createBook,
+  getBooksByUserId
+} = require('./models');
 
 module.exports.addUser = async (username, password) => {
   return await createUser(username, password);
@@ -30,4 +35,9 @@ module.exports.addBook = async ({
     });
 
   return await createBook(userId, title, author, genre, description);
+};
+
+module.exports.getBooksByUsername = async username => {
+  const userId = await getUserByUsername(username).then(user => user.id);
+  return await getBooksByUserId(userId);
 };

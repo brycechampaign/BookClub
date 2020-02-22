@@ -49,3 +49,19 @@ module.exports.createBook = async (
       throw new Error(err);
     });
 };
+
+module.exports.getBooksByUserId = async userId => {
+  const client = await db.connect();
+  const query = 'SELECT * FROM books WHERE user_id = $1';
+
+  return client
+    .query(query, [userId])
+    .then(results => {
+      client.release();
+      return results.rows;
+    })
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};
