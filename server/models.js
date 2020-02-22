@@ -146,3 +146,18 @@ module.exports.updateNoteColumn = async (id, column, newValue) => {
       throw new Error(err);
     });
 };
+
+module.exports.deleteNoteById = async id => {
+  const client = await db.connect();
+  const query = 'DELETE FROM notes WHERE id = $1';
+
+  return client
+    .query(query, [id])
+    .then(() => {
+      client.release();
+    })
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};

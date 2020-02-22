@@ -7,7 +7,8 @@ const {
   updateBookColumn,
   getBookNotes,
   createNote,
-  updateNoteColumn
+  updateNoteColumn,
+  deleteNoteById
 } = require('./models');
 
 module.exports.addUser = async (username, password) => {
@@ -77,4 +78,8 @@ module.exports.addNote = async (bookId, page = null, content) => {
 
 module.exports.updateNoteContent = async (id, newContent) => {
   return await updateNoteColumn(id, 'content', newContent);
+};
+
+module.exports.removeNote = async id => {
+  return await deleteNoteById(id);
 };

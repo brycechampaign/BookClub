@@ -11,7 +11,8 @@ const {
   updateDescription,
   getNotesByBookId,
   addNote,
-  updateNoteContent
+  updateNoteContent,
+  removeNote
 } = require('./controllers');
 
 router.post('/users', (req, res) => {
@@ -124,6 +125,14 @@ router.put('/notes/:id', (req, res) => {
   updateNoteContent(id, newContent)
     .then(() => res.sendStatus(200))
     .catch(() => res.sendStatus(404));
+});
+
+router.delete('/notes/:id', (req, res) => {
+  const { id } = req.params;
+
+  removeNote(id)
+    .then(() => res.sendStatus(200))
+    .catch(() => res.sendStatus(500));
 });
 
 module.exports = router;
