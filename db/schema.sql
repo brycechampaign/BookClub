@@ -25,5 +25,5 @@ CREATE TABLE notes(
   id serial PRIMARY KEY,
   book_id INT REFERENCES books(id),
   page INT,
-  contents VARCHAR(255)
+  content VARCHAR(255)
 )
