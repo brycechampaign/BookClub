@@ -83,11 +83,19 @@ module.exports.removeBookById = async id => {
 
 module.exports.setTitle = async (id, title) => {
   const client = await db.connect();
-  const query = 'UPDATE books SET title = $1 WHERE id = $2';
+  const query = 'UPDATE books SET title = $1 WHERE id = $2 RETURNING id';
 
   return client
     .query(query, [title, id])
-    .then(() => client.release())
+    .then(updatedIds => {
+      // Throw an error if no book entry associated
+      // with the id argument is found
+      if (updatedIds.rows.length === 0) {
+        throw new Error('Invalid book id');
+      }
+
+      client.release();
+    })
     .catch(err => {
       client.release();
       throw new Error(err);
