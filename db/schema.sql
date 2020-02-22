@@ -6,15 +6,15 @@ DROP TABLE IF EXISTS notes CASCADE;
 /* Create a user table, schema subject to change as genuine authentication is implemented */
 CREATE TABLE users(
   id serial PRIMARY KEY,
-  username VARCHAR(255),
-  password VARCHAR(255)
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 /* Create books table for storing book metadata */
 CREATE TABLE books(
   id serial PRIMARY KEY,
   user_id INT REFERENCES users(id),
-  title VARCHAR(255),
+  title VARCHAR(255) NOT NULL,
   author VARCHAR(255),
   genre VARCHAR(255),
   description VARCHAR(255)
