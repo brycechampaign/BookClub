@@ -7,7 +7,8 @@ const {
   deleteBookById,
   updateTitle,
   updateAuthor,
-  updateGenre
+  updateGenre,
+  updateDescription
 } = require('./controllers');
 
 router.post('/users', (req, res) => {
@@ -83,6 +84,15 @@ router.put('/books/:id/genre', (req, res) => {
   const newGenre = req.body.genre;
 
   updateGenre(id, newGenre)
+    .then(() => res.sendStatus(200))
+    .catch(() => res.sendStatus(404));
+});
+
+router.put('/books/:id/description', (req, res) => {
+  const { id } = req.params;
+  const newDescription = req.body.description;
+
+  updateDescription(id, newDescription)
     .then(() => res.sendStatus(200))
     .catch(() => res.sendStatus(404));
 });
