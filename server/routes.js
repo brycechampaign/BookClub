@@ -9,7 +9,8 @@ const {
   updateAuthor,
   updateGenre,
   updateDescription,
-  getNotesByBookId
+  getNotesByBookId,
+  addNote
 } = require('./controllers');
 
 router.post('/users', (req, res) => {
@@ -103,7 +104,16 @@ router.get('/books/:id/notes', (req, res) => {
 
   getNotesByBookId(id)
     .then(books => res.send(books))
-    .catch(err => console.error(err));
+    .catch(() => res.sendStatus(500));
+});
+
+router.post('/books/:id/notes', (req, res) => {
+  const { id } = req.params;
+  const { content, page } = req.body;
+
+  addNote(id, page, content)
+    .then(() => res.send(201))
+    .catch(() => res.sendStatus(400));
 });
 
 module.exports = router;

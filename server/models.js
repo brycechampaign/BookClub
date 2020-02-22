@@ -117,3 +117,11 @@ module.exports.getBookNotes = async bookId => {
       throw new Error(err);
     });
 };
+
+module.exports.createNote = async (bookId, page, content) => {
+  const client = await db.connect();
+  const query =
+    'INSERT INTO notes (book_id, page, contents) VALUES ($1, $2, $3)';
+
+  return client.query(query, [bookId, page, content]);
+};
