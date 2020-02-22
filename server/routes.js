@@ -10,7 +10,8 @@ const {
   updateGenre,
   updateDescription,
   getNotesByBookId,
-  addNote
+  addNote,
+  updateNoteContent
 } = require('./controllers');
 
 router.post('/users', (req, res) => {
@@ -114,6 +115,15 @@ router.post('/books/:id/notes', (req, res) => {
   addNote(id, page, content)
     .then(() => res.send(201))
     .catch(() => res.sendStatus(400));
+});
+
+router.put('/notes/:id', (req, res) => {
+  const { id } = req.params;
+  const newContent = req.body.content;
+
+  updateNoteContent(id, newContent)
+    .then(() => res.sendStatus(200))
+    .catch(() => res.sendStatus(404));
 });
 
 module.exports = router;

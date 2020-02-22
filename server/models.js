@@ -121,7 +121,28 @@ module.exports.getBookNotes = async bookId => {
 module.exports.createNote = async (bookId, page, content) => {
   const client = await db.connect();
   const query =
-    'INSERT INTO notes (book_id, page, contents) VALUES ($1, $2, $3)';
+    'INSERT INTO notes (book_id, page, content) VALUES ($1, $2, $3)';
 
   return client.query(query, [bookId, page, content]);
+};
+
+module.exports.updateNoteColumn = async (id, column, newValue) => {
+  const client = await db.connect();
+  const query = `UPDATE notes SET ${column} = $1 WHERE id = $2 RETURNING id`;
+
+  return client
+    .query(query, [newValue, id])
+    .then(updatedIds => {
+      // Throw an error if no book entry associated
+      // with the id argument is found
+      if (updatedIds.rows.length === 0) {
+        throw new Error('Invalid book id');
+      }
+
+      client.release();
+    })
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
 };
