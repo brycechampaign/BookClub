@@ -4,7 +4,8 @@ const {
   createBook,
   getBooksByUserId,
   removeBookById,
-  updateBookColumn
+  updateBookColumn,
+  getBookNotes
 } = require('./models');
 
 module.exports.addUser = async (username, password) => {
@@ -62,4 +63,8 @@ module.exports.updateGenre = async (id, newGenre) => {
 
 module.exports.updateDescription = async (id, newDescription) => {
   return await updateBookColumn(id, 'description', newDescription);
+};
+
+module.exports.getNotesByBookId = async id => {
+  return await getBookNotes(id);
 };

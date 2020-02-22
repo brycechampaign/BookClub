@@ -84,7 +84,7 @@ module.exports.removeBookById = async id => {
 module.exports.updateBookColumn = async (id, column, newValue) => {
   const client = await db.connect();
   const query = `UPDATE books SET ${column} = $1 WHERE id = $2 RETURNING id`;
-  console.log(query);
+
   return client
     .query(query, [newValue, id])
     .then(updatedIds => {
@@ -95,6 +95,22 @@ module.exports.updateBookColumn = async (id, column, newValue) => {
       }
 
       client.release();
+    })
+    .catch(err => {
+      client.release();
+      throw new Error(err);
+    });
+};
+
+module.exports.getBookNotes = async bookId => {
+  const client = await db.connect();
+  const query = 'SELECT * FROM notes WHERE book_id = $1';
+
+  return client
+    .query(query, [bookId])
+    .then(notes => {
+      client.release();
+      return notes.rows;
     })
     .catch(err => {
       client.release();
