@@ -55,3 +55,7 @@ module.exports.updateTitle = async (id, newTitle) => {
 module.exports.updateAuthor = async (id, newAuthor) => {
   return await updateBookColumn(id, 'author', newAuthor);
 };
+
+module.exports.updateGenre = async (id, newGenre) => {
+  return await updateBookColumn(id, 'genre', newGenre);
+};
