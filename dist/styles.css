@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap');
+
+* {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+#username-header {
+  color: blue;
+}
+
+.card {
+  box-shadow: 1px 4px 7px 2px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 2%;
+  margin-bottom: 2vw;
+}
+
+#favorite-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#favorites-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.favorite {
+  background-color: #f7f7f8;
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-bottom: 3%;
+}
