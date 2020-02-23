@@ -4,3 +4,12 @@ import Axios from 'axios';
 export const getFavoritesByUser = username => {
   return Axios.get(`/${username}/books`).then(favorites => favorites.data);
 };
+
+export const addFavorite = (username, title, author, genre, description) => {
+  return Axios.post(`/${username}/books`, {
+    title,
+    author,
+    genre,
+    description
+  });
+};
