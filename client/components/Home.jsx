@@ -6,8 +6,12 @@ const Home = () => {
   const [user, setUser] = useState('bryce');
   const [favorites, setFavorites] = useState([]);
 
+  const updateFavorites = () => {
+    return getFavoritesByUser(user).then(favorites => setFavorites(favorites));
+  };
+
   useEffect(() => {
-    getFavoritesByUser(user).then(favorites => setFavorites(favorites));
+    updateFavorites();
   }, [user]);
 
   return (
@@ -15,7 +19,11 @@ const Home = () => {
       <h1>
         Welcome Back, <span id="username-header">{user}</span>
       </h1>
-      <FavoriteList favorites={favorites} />
+      <FavoriteList
+        favorites={favorites}
+        user={user}
+        updateFavorites={updateFavorites}
+      />
     </div>
   );
 };
