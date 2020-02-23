@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
+import Home from './components/Home.jsx';
 
-const App = () => {
-  return <h1>Placeholder</h1>;
-};
-
-render(<App />, document.getElementById('root'));
+render(<Home />, document.getElementById('root'));
