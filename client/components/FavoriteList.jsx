@@ -1,8 +1,9 @@
 import React from 'react';
 import Favorite from './Favorite';
+import AddBookForm from './AddBookForm';
 
 // Displays a list of the current user's favorite books
-const FavoriteList = ({ favorites }) => {
+const FavoriteList = ({ favorites, updateFavorites, user }) => {
   return (
     <div id="favorite-list" className="card">
       <h2>Favorite Books</h2>
@@ -20,7 +21,7 @@ const FavoriteList = ({ favorites }) => {
           );
         })}
       </div>
-      <button>Add Book</button>
+      <AddBookForm user={user} updateFavorites={updateFavorites} />
     </div>
   );
 };
