@@ -29,3 +29,10 @@ export const editBookProperty = (property, bookId, value) => {
 export const getBookNotes = bookId => {
   return Axios.get(`/books/${bookId}/notes`).then(books => books.data);
 };
+
+export const addNote = (bookId, content, page) => {
+  return Axios.post(`/books/${bookId}/notes`, {
+    content,
+    page
+  });
+};
