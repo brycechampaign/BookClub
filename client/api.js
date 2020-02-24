@@ -13,3 +13,9 @@ export const addFavorite = (username, title, author, genre, description) => {
     description
   });
 };
+
+export const deleteBook = bookId => {
+  return Axios.delete(`/books`, {
+    params: { bookId }
+  });
+};

@@ -13,10 +13,12 @@ const FavoriteList = ({ favorites, updateFavorites, user }) => {
           return (
             <Favorite
               key={id}
+              id={id}
               title={title}
               author={author}
               genre={genre}
               description={description}
+              updateFavorites={updateFavorites}
             />
           );
         })}
