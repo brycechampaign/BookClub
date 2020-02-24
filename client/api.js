@@ -36,3 +36,7 @@ export const addNote = (bookId, content, page) => {
     page
   });
 };
+
+export const deleteNote = id => {
+  return Axios.delete(`/notes/${id}`);
+};
