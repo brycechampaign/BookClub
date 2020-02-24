@@ -1,5 +1,7 @@
 import React from 'react';
 import { deleteBook } from '../api';
+import EditBookForm from './EditBookForm';
+import NoteList from './NoteList';
 
 const Favorite = ({
   title,
@@ -20,6 +22,15 @@ const Favorite = ({
       <h5>{author}</h5>
       <h5>{genre}</h5>
       <button onClick={deleteFavorite}>Delete</button>
+      <EditBookForm
+        id={id}
+        title={title}
+        author={author}
+        genre={genre}
+        description={description}
+        updateFavorites={updateFavorites}
+      />
+      <NoteList />
     </div>
   );
 };
