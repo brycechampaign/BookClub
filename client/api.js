@@ -40,3 +40,10 @@ export const addNote = (bookId, content, page) => {
 export const deleteNote = id => {
   return Axios.delete(`/notes/${id}`);
 };
+
+export const editNote = (id, page, content) => {
+  return Axios.put(`/notes/${id}`, {
+    page,
+    content
+  });
+};
