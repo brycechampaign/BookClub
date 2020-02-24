@@ -43,3 +43,7 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.note {
+  padding: 2%;
+}
