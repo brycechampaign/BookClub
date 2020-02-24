@@ -2,6 +2,7 @@ import React from 'react';
 import { deleteBook } from '../api';
 import EditBookForm from './EditBookForm';
 import NoteToggle from './NoteToggle';
+import AddNoteForm from './AddNoteForm';
 
 const Favorite = ({
   title,
@@ -30,6 +31,7 @@ const Favorite = ({
         description={description}
         updateFavorites={updateFavorites}
       />
+      <AddNoteForm bookId={id} />
       <NoteToggle bookId={id} />
     </div>
   );
