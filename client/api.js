@@ -19,3 +19,9 @@ export const deleteBook = bookId => {
     params: { bookId }
   });
 };
+
+export const editBookProperty = (property, bookId, value) => {
+  return Axios.put(`/books/${bookId}/${property}`, {
+    [property]: value
+  });
+};
