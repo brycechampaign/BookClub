@@ -25,3 +25,7 @@ export const editBookProperty = (property, bookId, value) => {
     [property]: value
   });
 };
+
+export const getBookNotes = bookId => {
+  return Axios.get(`/books/${bookId}/notes`).then(books => books.data);
+};
