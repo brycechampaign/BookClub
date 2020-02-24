@@ -76,8 +76,10 @@ module.exports.addNote = async (bookId, page = null, content) => {
   return await createNote(bookId, page, content);
 };
 
-module.exports.updateNoteContent = async (id, newContent) => {
-  return await updateNoteColumn(id, 'content', newContent);
+module.exports.updateNoteContent = async (id, newContent, newPage) => {
+  return await updateNoteColumn(id, 'content', newContent).then(
+    updateNoteColumn(id, 'page', newPage)
+  );
 };
 
 module.exports.removeNote = async id => {

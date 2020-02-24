@@ -104,7 +104,7 @@ module.exports.updateBookColumn = async (id, column, newValue) => {
 
 module.exports.getBookNotes = async bookId => {
   const client = await db.connect();
-  const query = 'SELECT * FROM notes WHERE book_id = $1';
+  const query = 'SELECT * FROM notes WHERE book_id = $1 ORDER BY page';
 
   return client
     .query(query, [bookId])

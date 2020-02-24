@@ -121,8 +121,9 @@ router.post('/books/:id/notes', (req, res) => {
 router.put('/notes/:id', (req, res) => {
   const { id } = req.params;
   const newContent = req.body.content;
+  const newPage = req.body.page;
 
-  updateNoteContent(id, newContent)
+  updateNoteContent(id, newContent, newPage)
     .then(() => res.sendStatus(200))
     .catch(() => res.sendStatus(404));
 });
