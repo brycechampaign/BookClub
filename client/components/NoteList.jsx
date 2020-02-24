@@ -16,7 +16,12 @@ const NoteList = ({ bookId }) => {
   return (
     <div className="note-list">
       {notes.map(note => (
-        <Note page={note.page} content={note.content} key={note.id} />
+        <Note
+          id={note.id}
+          page={note.page}
+          content={note.content}
+          key={note.id}
+        />
       ))}
     </div>
   );
