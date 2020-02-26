@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon server/index.js",
+    "start": "sudo docker-compose up",
     "build:dev": "webpack -d && sudo docker build -t brycechampaign/bookclub . && sudo docker push brycechampaign/bookclub && sudo docker-compose up -d --no-deps --build server"
   },
   "repository": {
