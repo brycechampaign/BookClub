@@ -41,6 +41,8 @@ export const getBookNotes = bookId => {
 // Create a new note associated with the given book ID (bookId) with the
 // passed in page number (page) and content (content) values
 export const addNote = (bookId, content, page) => {
+  if (page === '') page = null;
+
   return Axios.post(`/books/${bookId}/notes`, {
     content,
     page

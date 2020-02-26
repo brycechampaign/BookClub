@@ -34,7 +34,9 @@ const AddNoteForm = ({ bookId, updateNotes }) => {
   const handleSubmit = e => {
     e.preventDefault();
     // Send request to API to create a new note and close the modal upon success
-    addNote(bookId, content, page).then(() => setModalIsOpen(false));
+    addNote(bookId, content, page)
+      .then(updateNotes)
+      .then(() => setModalIsOpen(false));
   };
 
   return (

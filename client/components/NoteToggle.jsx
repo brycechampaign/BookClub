@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NoteList from './NoteList';
 
 // Button for showing/hiding note list for a favorite book
-const NoteToggle = ({ bookId }) => {
+const NoteToggle = ({ notes, updateNotes }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
@@ -13,7 +13,7 @@ const NoteToggle = ({ bookId }) => {
 
       {/* If isExpanded is true, the list of notes is rendered
       Otherwise the list is hidden*/}
-      {isExpanded ? <NoteList bookId={bookId} /> : null}
+      {isExpanded ? <NoteList notes={notes} updateNotes={updateNotes} /> : null}
     </>
   );
 };
