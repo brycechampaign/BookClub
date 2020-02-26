@@ -136,4 +136,8 @@ router.delete('/notes/:id', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
+router.get('*', (req, res) => {
+  res.redirect('/');
+});
+
 module.exports = router;
