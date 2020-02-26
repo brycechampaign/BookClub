@@ -12,6 +12,7 @@ const Favorite = ({
   updateFavorites,
   id
 }) => {
+  // Sends a request to server to delete the note
   const deleteFavorite = () => {
     deleteBook(id).then(() => updateFavorites());
   };
@@ -22,7 +23,12 @@ const Favorite = ({
       <h4>{description}</h4>
       <h5>{author}</h5>
       <h5>{genre}</h5>
+
+      {/* button for deleting note */}
       <button onClick={deleteFavorite}>Delete</button>
+
+      {/* Render button which, when clicked, reveals a modal with a form
+      for editing the book*/}
       <EditBookForm
         id={id}
         title={title}
@@ -31,7 +37,12 @@ const Favorite = ({
         description={description}
         updateFavorites={updateFavorites}
       />
+
+      {/* Render button which, when clicked, reveals a modal with a form
+      for adding a note*/}
       <AddNoteForm bookId={id} />
+
+      {/* Button for showing/hiding the list of notes assocaited with the book */}
       <NoteToggle bookId={id} />
     </div>
   );

@@ -17,7 +17,10 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const EditNoteForm = ({ id, page, content }) => {
+  // Modal is initially closed/hidden
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  // Note field state set to current values in database
   const [newContent, setNewContent] = useState(content);
   const [newPage, setNewPage] = useState(page);
 
@@ -31,6 +34,9 @@ const EditNoteForm = ({ id, page, content }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    // Send request to server to edit the note entry
+    // then close the modal
     editNote(id, newPage, newContent).then(() => closeModal());
   };
 
@@ -46,6 +52,7 @@ const EditNoteForm = ({ id, page, content }) => {
         contentLabel="Edit a Favorite Book"
       >
         <div>Add Note</div>
+        {/* Render form for editing note in the modal*/}
         <form onSubmit={e => handleSubmit(e)}>
           <div className="form-container">
             <label htmlFor="page">Page Number (Optional)</label>

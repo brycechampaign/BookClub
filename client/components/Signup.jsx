@@ -4,24 +4,25 @@ import { createUser } from '../api';
 import { Redirect } from 'react-router-dom';
 
 const Signup = () => {
-  const [redirectToHome, setRedirectToHome] = useState(false);
+  const [redirectToOverview, setredirectToOverview] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const login = (username, password) => {
     Auth.authenticate(username, password, () => {
-      setRedirectToHome(true);
+      setredirectToOverview(true);
     });
   };
 
   const handleSignup = e => {
     e.preventDefault();
 
-    // Create a new user, log them in, and redirect to Home page
+    // Create a new user, log them in, and redirect to Overview page
     createUser(username, password).then(() => login(username, password));
   };
 
-  if (redirectToHome === true) {
+  // Redirect to overview page if the user is logged in
+  if (redirectToOverview === true) {
     return <Redirect to={`/${username}`} />;
   }
 

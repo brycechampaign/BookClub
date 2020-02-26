@@ -42,6 +42,7 @@ router.get('/authenticate', (req, res) => {
   }
 });
 
+// Create a new book associated with a username
 router.post('/:username/books', (req, res) => {
   const { username } = req.params;
   req.body.username = username;
@@ -51,6 +52,7 @@ router.post('/:username/books', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
+// Get a list of books associated with a username
 router.get('/:username/books', (req, res) => {
   const { username } = req.params;
   getBooksByUsername(username)
@@ -58,6 +60,7 @@ router.get('/:username/books', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
+// Delete a book entry by book ID (id query param)
 router.delete('/books', (req, res) => {
   const { bookId } = req.query;
   deleteBookById(bookId)
@@ -65,6 +68,7 @@ router.delete('/books', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
+// Edit the title of a book using the book ID (id)
 router.put('/books/:id/title', (req, res) => {
   const { id } = req.params;
   const newTitle = req.body.title;
@@ -74,6 +78,7 @@ router.put('/books/:id/title', (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
+// Edit the author of a book using the book ID (id)
 router.put('/books/:id/author', (req, res) => {
   const { id } = req.params;
   const newAuthor = req.body.author;
@@ -83,6 +88,7 @@ router.put('/books/:id/author', (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
+// Edit the genre of a book using the book ID (id)
 router.put('/books/:id/genre', (req, res) => {
   const { id } = req.params;
   const newGenre = req.body.genre;
@@ -92,6 +98,7 @@ router.put('/books/:id/genre', (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
+// Edit the description of a book using the book ID (id)
 router.put('/books/:id/description', (req, res) => {
   const { id } = req.params;
   const newDescription = req.body.description;
@@ -101,6 +108,7 @@ router.put('/books/:id/description', (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
+// Retrieve a list of notes associated with a book ID (id)
 router.get('/books/:id/notes', (req, res) => {
   const { id } = req.params;
 
@@ -109,6 +117,7 @@ router.get('/books/:id/notes', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
+// Add a note associated with a book ID (id param)
 router.post('/books/:id/notes', (req, res) => {
   const { id } = req.params;
   const { content, page } = req.body;
@@ -118,6 +127,7 @@ router.post('/books/:id/notes', (req, res) => {
     .catch(() => res.sendStatus(400));
 });
 
+// Edit the page and content of a note using the note ID (id)
 router.put('/notes/:id', (req, res) => {
   const { id } = req.params;
   const newContent = req.body.content;
@@ -128,6 +138,7 @@ router.put('/notes/:id', (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
+// Delete a note using a note ID (id)
 router.delete('/notes/:id', (req, res) => {
   const { id } = req.params;
 
@@ -136,6 +147,9 @@ router.delete('/notes/:id', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
+// Wildcard route for routes unknown to the API/server
+// All routes not handled by the server will be handled by the
+// Router on the client
 router.get('*', (req, res) => {
   res.redirect('/');
 });
