@@ -9,7 +9,9 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    width: '40%',
+    height: '60%'
   }
 };
 
@@ -71,48 +73,60 @@ const EditBookForm = ({
         style={customStyles}
         contentLabel="Edit a Favorite Book"
       >
-        <div>Edit Book</div>
-        <form>
-          <div className="form-container">
-            <label htmlFor="title">Title</label>
-            <input
-              name="title"
-              id="title"
-              value={newTitle}
-              onChange={e => setTitle(e.target.value)}
-            />
-            <button onClick={e => handleTitleSave(e)}>Save</button>
+        <div>
+          <span className="modal-header">Edit Book</span>
+          <form>
+            <div className="form-container">
+              <div className="label-input-pair">
+                <label htmlFor="title">Title</label>
+                <input
+                  name="title"
+                  id="title"
+                  value={newTitle}
+                  onChange={e => setTitle(e.target.value)}
+                />
+                <button onClick={e => handleTitleSave(e)}>Save</button>
+              </div>
 
-            <label htmlFor="author">Author</label>
-            <input
-              name="author"
-              id="author"
-              value={newAuthor}
-              onChange={e => setAuthor(e.target.value)}
-            />
-            <button onClick={e => handleAuthorSave(e)}>Save</button>
+              <div className="label-input-pair">
+                <label htmlFor="author">Author</label>
+                <input
+                  name="author"
+                  id="author"
+                  value={newAuthor}
+                  onChange={e => setAuthor(e.target.value)}
+                />
+                <button onClick={e => handleAuthorSave(e)}>Save</button>
+              </div>
 
-            <label htmlFor="genre">Genre</label>
-            <input
-              name="genre"
-              id="genre"
-              value={newGenre}
-              onChange={e => setGenre(e.target.value)}
-            />
-            <button onClick={e => handleGenreSave(e)}>Save</button>
+              <div className="label-input-pair">
+                <label htmlFor="genre">Genre</label>
+                <input
+                  name="genre"
+                  id="genre"
+                  value={newGenre}
+                  onChange={e => setGenre(e.target.value)}
+                />
+                <button onClick={e => handleGenreSave(e)}>Save</button>
+              </div>
 
-            <label htmlFor="description">Description</label>
-            <input
-              name="description"
-              id="description"
-              type="textarea"
-              value={newDescription}
-              onChange={e => setDescription(e.target.value)}
-            />
-            <button onClick={e => handleDescriptionSave(e)}>Save</button>
-            <button onClick={closeModal}>Done</button>
-          </div>
-        </form>
+              <div className="label-input-pair">
+                <label htmlFor="description">Description</label>
+                <textarea
+                  name="description"
+                  id="description"
+                  rows="4"
+                  cols="50"
+                  value={newDescription}
+                  onChange={e => setDescription(e.target.value)}
+                />
+                <button onClick={e => handleDescriptionSave(e)}>Save</button>
+              </div>
+
+              <button onClick={closeModal}>Done</button>
+            </div>
+          </form>
+        </div>
       </Modal>
     </div>
   );

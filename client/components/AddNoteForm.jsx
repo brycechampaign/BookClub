@@ -9,7 +9,8 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    width: '30%'
   }
 };
 
@@ -43,33 +44,40 @@ const AddNoteForm = ({ bookId, updateNotes }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Edit a Favorite Book"
+        contentLabel="Add a Note"
       >
-        <div>Add Note</div>
-        <form onSubmit={e => handleSubmit(e)}>
-          <div className="form-container">
-            <label htmlFor="page">Page Number (Optional)</label>
-            <input
-              type="number"
-              name="page"
-              id="page"
-              value={page}
-              onChange={e => setPage(e.target.value)}
-            />
-
-            <label htmlFor="page">Content</label>
-            <input
-              type="textArea"
-              name="content"
-              id="content"
-              value={content}
-              onChange={e => setContent(e.target.value)}
-            />
-
-            <input type="submit" value="Add Note" />
-            <button onClick={() => setModalIsOpen(false)}>Cancel</button>
-          </div>
-        </form>
+        <div>
+          <span className="modal-header">Add Note</span>
+          <form onSubmit={e => handleSubmit(e)}>
+            <div className="form-container" id="edit-note-container">
+              <div className="label-input-pair">
+                <label htmlFor="page">Page Number (Optional)</label>
+                <input
+                  type="number"
+                  name="page"
+                  id="page"
+                  value={page}
+                  onChange={e => setPage(e.target.value)}
+                />
+              </div>
+              <div className="label-input-pair">
+                <label htmlFor="page">Content</label>
+                <textarea
+                  name="content"
+                  rows="4"
+                  cols="50"
+                  id="content"
+                  value={content}
+                  onChange={e => setContent(e.target.value)}
+                />
+              </div>
+              <div className="button-group">
+                <input type="submit" value="Add Note" />
+                <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </Modal>
     </div>
   );
