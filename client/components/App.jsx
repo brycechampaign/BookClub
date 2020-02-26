@@ -13,6 +13,7 @@ import Signup from './Signup';
 import Auth from '../auth';
 import Landing from './Landing';
 
+// Signs-out a user and redirects to landing page when clicked
 const SignoutButton = withRouter(({ history }) => (
   <a
     id="signout"
@@ -25,7 +26,11 @@ const SignoutButton = withRouter(({ history }) => (
   </a>
 ));
 
+// Contains links to Signup, Login, and Landing page when user is not authenticated
+// Contains SignoutButton component for signing out when user is authenticated
+// Will display above all pages
 const NavBar = withRouter(() =>
+  // Conditionally render depending on client authentication status
   Auth.isAuthenticated ? (
     <div id="navbar">
       <SignoutButton />
@@ -46,6 +51,7 @@ const NavBar = withRouter(() =>
 );
 
 const App = () => {
+  // Handles routing
   return (
     <Router>
       <NavBar />

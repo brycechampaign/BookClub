@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import Auth from '../auth';
 
 const Login = () => {
-  const [redirectToHome, setRedirectToHome] = useState(false);
+  const [redirectToOverview, setRedirectToOverview] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // Authenticate client using credentials and redirect
+  // to the overview page
   const login = (username, password) => {
     Auth.authenticate(username, password, () => {
-      setRedirectToHome(true);
+      setRedirectToOverview(true);
     });
   };
 
@@ -23,10 +25,13 @@ const Login = () => {
 
   const handleLogin = e => {
     e.preventDefault();
+
+    // Authenticate client using entered username and password
     login(username, password);
   };
 
-  if (redirectToHome === true) {
+  // Redirect to the overview page when the client is authenticated
+  if (redirectToOverview === true) {
     return <Redirect to={`/${username}`} />;
   }
 

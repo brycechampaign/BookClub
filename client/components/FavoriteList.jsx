@@ -8,6 +8,7 @@ const FavoriteList = ({ favorites, updateFavorites, user }) => {
     <div id="favorite-list">
       <h2>Favorite Books</h2>
       <div id="favorites-container">
+        {/* Render the list of books favorited by the user */}
         {favorites.map(book => {
           const { id, title, author, genre, description } = book;
           return (
@@ -23,6 +24,9 @@ const FavoriteList = ({ favorites, updateFavorites, user }) => {
           );
         })}
       </div>
+
+      {/* Render button which, when clicked, reveals a modal with a form
+      for adding a favorite book*/}
       <AddBookForm user={user} updateFavorites={updateFavorites} />
     </div>
   );

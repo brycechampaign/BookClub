@@ -18,6 +18,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const AddNoteForm = ({ bookId, updateNotes }) => {
+  // Modal is initially closed
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [content, setContent] = useState('');
   const [page, setPage] = useState('');
@@ -32,6 +33,7 @@ const AddNoteForm = ({ bookId, updateNotes }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    // Send request to API to create a new note and close the modal upon success
     addNote(bookId, content, page).then(() => setModalIsOpen(false));
   };
 

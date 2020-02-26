@@ -26,7 +26,10 @@ const EditBookForm = ({
   description,
   updateFavorites
 }) => {
+  // Modal is initially closed/hidden
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  // Set metadata state values to current values in database
   const [newTitle, setTitle] = useState(title);
   const [newAuthor, setAuthor] = useState(author);
   const [newGenre, setGenre] = useState(genre);
@@ -42,26 +45,36 @@ const EditBookForm = ({
 
   const handleTitleSave = e => {
     e.preventDefault();
+
+    // Make request to server to edit book title
     editBookProperty('title', id, newTitle).then(() => updateFavorites());
   };
 
   const handleAuthorSave = e => {
     e.preventDefault();
+
+    // Make a request to server to edit book author
     editBookProperty('author', id, newAuthor).then(() => updateFavorites());
   };
 
   const handleGenreSave = e => {
     e.preventDefault();
+
+    // Make a request to server to edit book genre
     editBookProperty('genre', id, newGenre).then(() => updateFavorites());
   };
 
   const handleDescriptionSave = e => {
     e.preventDefault();
+
+    // Make a request to server to edit book description
     editBookProperty('description', id, newDescription).then(() =>
       updateFavorites()
     );
   };
 
+  // Each book metadata field has an input for modifying the current field value
+  // and a button for saving the new value to the database
   return (
     <div>
       <button onClick={openModal} style={{ width: '100%' }}>
@@ -123,6 +136,7 @@ const EditBookForm = ({
                 <button onClick={e => handleDescriptionSave(e)}>Save</button>
               </div>
 
+              {/* Done button for closing modal, does not submit the form */}
               <button onClick={closeModal}>Done</button>
             </div>
           </form>

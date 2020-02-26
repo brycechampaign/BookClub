@@ -4,13 +4,16 @@ import { getFavoritesByUser } from '../api';
 import { useParams } from 'react-router-dom';
 
 const Overview = () => {
+  // set user to value of "user" URL parameter
   const [user, setUser] = useState(useParams().user);
   const [favorites, setFavorites] = useState([]);
 
+  // Update the list of favorite books to display based on current user
   const updateFavorites = () => {
     return getFavoritesByUser(user).then(favorites => setFavorites(favorites));
   };
 
+  // Update the favorites list data when the user changes
   useEffect(() => {
     updateFavorites();
   }, [user]);

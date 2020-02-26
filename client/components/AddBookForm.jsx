@@ -19,6 +19,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const AddBookForm = ({ user, updateFavorites }) => {
+  // Modal is initially closed/hidden
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
