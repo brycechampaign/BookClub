@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import FavoriteList from './FavoriteList';
 import { getFavoritesByUser } from '../api';
+import { useParams } from 'react-router-dom';
 
-const Home = () => {
-  const [user, setUser] = useState('bryce');
+const Overview = () => {
+  const [user, setUser] = useState(useParams().user);
   const [favorites, setFavorites] = useState([]);
 
   const updateFavorites = () => {
@@ -15,7 +16,7 @@ const Home = () => {
   }, [user]);
 
   return (
-    <div>
+    <div id="overview-body">
       <h1>
         Welcome Back, <span id="username-header">{user}</span>
       </h1>
@@ -28,4 +29,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Overview;
