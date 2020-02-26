@@ -4,6 +4,70 @@
   font-family: 'Libre Franklin', sans-serif;
 }
 
+body {
+  margin: 0%;
+}
+
+button,
+input[type='submit'] {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 0;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: #ffffff;
+  background-color: blue;
+  outline: none;
+  box-shadow: 1px 4px 7px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:active,
+input[type='submit']:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+  outline: none;
+  text-decoration: none;
+  -webkit-appearance: none;
+}
+
+button {
+  outline: none;
+  box-shadow: 1px 4px 7px 2px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  text-decoration: none;
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+  border: none;
+  outline: none;
+}
+
+/* Prevent sticky-focus*/
+
+button:hover,
+input[type='submit']:hover {
+  background-color: lightblue;
+  outline: none;
+  text-decoration: none;
+}
+
+button:focus {
+  outline: none;
+  text-decoration: none;
+  border: 0;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
+    0 0 0 1.5px rgba(255, 105, 180, 0.5);
+  -webkit-appearance: none;
+}
+
 #username-header {
   color: blue;
 }
@@ -13,24 +77,28 @@
   transition: 0.3s;
   border-radius: 2%;
   margin-bottom: 2vw;
+  padding: 2%;
 }
 
 #favorite-list {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 50%;
 }
 
 #favorites-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .favorite {
   background-color: #f7f7f8;
   margin: 0 auto;
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding-left: 2%;
@@ -42,8 +110,98 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: 100%;
 }
 
 .note {
   padding: 2%;
+  margin-top: 3%;
+  background-color: white;
+}
+
+#navbar {
+  background-color: blue;
+  height: 4em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-right: 85%;
+}
+
+.navbar-item {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#landing h1 {
+  font-size: 4em;
+  margin-top: 10%;
+  color: darkblue;
+}
+
+#overview-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+#landing-buttons {
+  font-size: 1.5em;
+  width: 16%;
+}
+
+#signout {
+  cursor: pointer;
+}
+
+.modal-header {
+  font-size: 3em;
+}
+
+.label-input-pair {
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+}
+
+#edit-book-form label {
+  font-size: 1.5em;
+}
+
+#edit-note-container {
+  height: 300px;
+}
+
+.book-form {
+  height: 80%;
+}
+
+.auth-form {
+  height: 15em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  width: 25%;
+  justify-content: space-between;
+}
+
+.auth-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
