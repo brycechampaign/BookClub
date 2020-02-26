@@ -106,8 +106,5 @@ dist
 #docker-compose file
 docker-compose.yml
 
-#package-lock file
-package-lock.json
-
 #database data volume
 db/data
