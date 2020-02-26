@@ -9,7 +9,7 @@ const Note = ({ id, page, content }) => {
       <p>{content}</p>
 
       {/* If there is no page value, render N/A*/}
-      <p>Page: {page === undefined ? 'N/A' : page}</p>
+      <p>Page: {page === null ? 'N/A' : page}</p>
 
       {/* Deletes the note when clicked*/}
       <button onClick={() => deleteNote(id)}>Delete</button>
