@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { getBookNotes } from '../api';
+import React, { useEffect } from 'react';
 import Note from './Note';
 
-const NoteList = ({ bookId }) => {
-  const [notes, setNotes] = useState([]);
-
-  const updateNotes = () => {
-    getBookNotes(bookId).then(newNotes => setNotes(newNotes));
-  };
-
+const NoteList = ({ notes, updateNotes }) => {
   useEffect(() => {
     updateNotes();
-  });
+  }, []);
 
   return (
     <div className="note-list">
@@ -21,6 +14,7 @@ const NoteList = ({ bookId }) => {
           page={note.page}
           content={note.content}
           key={note.id}
+          updateNotes={updateNotes}
         />
       ))}
     </div>

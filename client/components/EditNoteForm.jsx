@@ -16,7 +16,7 @@ const customStyles = {
 // Binding Modal to root element
 Modal.setAppElement('#root');
 
-const EditNoteForm = ({ id, page, content }) => {
+const EditNoteForm = ({ id, page, content, updateNotes }) => {
   // Modal is initially closed/hidden
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -37,7 +37,9 @@ const EditNoteForm = ({ id, page, content }) => {
 
     // Send request to server to edit the note entry
     // then close the modal
-    editNote(id, newPage, newContent).then(() => closeModal());
+    editNote(id, newPage, newContent)
+      .then(updateNotes)
+      .then(() => closeModal());
   };
 
   return (
