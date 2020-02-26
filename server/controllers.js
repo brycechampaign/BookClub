@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const {
   createUser,
   getUserByUsername,
@@ -11,16 +12,24 @@ const {
   deleteNoteById
 } = require('./models');
 
+const createHash = async password => {
+  const saltRounds = 10;
+  const hash = await bcrypt.hash(password, saltRounds);
+  return hash;
+};
+
 module.exports.addUser = async (username, password) => {
-  return await createUser(username, password);
+  const hash = await createHash(password);
+  return await createUser(username, hash);
 };
 
 module.exports.authenticateUser = async (username, password) => {
   const user = await getUserByUsername(username);
 
   const actualPassword = user ? user.password : null;
+  const isValid = await bcrypt.compare(password, actualPassword);
 
-  if (actualPassword === password) {
+  if (isValid) {
     return true;
   } else {
     throw new Error('Invalid username or password');
